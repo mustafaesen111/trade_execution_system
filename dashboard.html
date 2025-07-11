@@ -1,0 +1,57 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kontrol Paneli</title>
+    <style>
+        body { font-family: Arial; margin: 40px;}
+        h2 { color: #0077cc;}
+        table { border-collapse: collapse; width: 100%; margin-bottom: 30px;}
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left;}
+        th { background-color: #f2f2f2;}
+        form { max-width: 400px; margin: auto;}
+        input, select, button { width: 100%; padding: 10px; margin-top: 10px;}
+        button { background-color: #0077cc; color: white; border: none; cursor: pointer;}
+    </style>
+</head>
+<body>
+    <h2>Aboneler Listesi</h2>
+    <table>
+        <tr>
+            <th>Ad</th>
+            <th>Broker</th>
+            <th>Eşleşme (%)</th>
+            <th>Günlük Limit</th>
+            <th>Alım</th>
+            <th>Satım</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name}}</td>
+            <td>{{ user.broker}}</td>
+            <td>{{ user.match_ratio}}</td>
+            <td>{{ user.max_daily_limit}}</td>
+            <td>{{ 'Evet' if user.allow_buy else 'Hayır'}}</td>
+            <td>{{ 'Evet' if user.allow_sell else 'Hayır'}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>İşlem Tetikle</h2>
+    <form method="POST" action="/trigger_trade">
+        <label>Sembol:</label>
+        <input type="text" name="symbol" required>
+
+        <label>İşlem Türü:</label>
+        <select name="action">
+            <option value="BUY">Alım</option>
+            <option value="SELL">Satım</option>
+        </select>
+
+        <label>Miktar:</label>
+        <input type="number" name="quantity" min="1" required>
+
+        <button type="submit">İşlemi Gönder</button>
+    </form>
+</body>
+</html>

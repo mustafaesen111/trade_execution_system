@@ -1,0 +1,39 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abone Kayıt</title>
+</head>
+<body>
+    <h2>Yeni Abone Kaydı</h2>
+    <form method="POST">
+        <label>Ad:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Broker:</label><br>
+        <select name="broker" required>
+            <option>Fidelity</option>
+            <option>Robinhood</option>
+            <option>Questrade</option>
+            <option>TD</option>
+            <option>Midas</option>
+            <option>IBKR</option>
+        </select><br><br>
+
+        <label>API Anahtarı:</label><br>
+        <input type="text" name="api_key" required><br><br>
+
+        <label>Eşleşme Oranı (%):</label><br>
+        <input type="number" name="match_ratio" value="100" required><br><br>
+
+        <label>Günlük Limit (USD):</label><br>
+        <input type="number" name="limit" value="10000" required><br><br>
+
+        <label>İzin Verilen İşlemler:</label><br>
+        <input type="checkbox" name="buy"> Alım
+        <input type="checkbox" name="sell"> Satım<br><br>
+
+        <button type="submit">Kaydol</button>
+    </form>
+</body>
+</html>
